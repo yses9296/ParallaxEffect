@@ -27,13 +27,15 @@
         
         /* reset */
         * {margin: 0; padding: 0;}
+        a {text-decoration: none; color: #fff;}
+        li {list-style: none;}
         
         /*layout*/
         .parallax {
             background: #222;
             color: #fff;
             font-family: 'NEXONLv1Gothic';
-            font-weight: 300;
+            font-weight: 400;
         }
         #paraHeader {
             padding: 20px;
@@ -50,11 +52,14 @@
             width: 100%;
             overflow: hidden;
         }
-        #paraFooter {}
-        
+        #paraFooter {
+            padding: 10vw 0;
+        }
+
         /* Content_Item */
         .content_item {
             width: 1000px;
+            max-width: 70vw;
             margin: 30vw 0;
             /*background: rgba(255,255,255,0.3);*/
             text-align: right;
@@ -77,7 +82,8 @@
             left: -5vw;
         }
         .content_item_title {
-            padding-bottom: 10px;
+            padding-bottom: 1vw;
+            font-size: 2vw;
         }
         .content_item_imgWrap {
             width: 100%;
@@ -139,6 +145,48 @@
         }
         .content_item:nth-child(9) .content_item_img {
             background-image: url(https://webstoryboy.github.io/wtss/refer-effect/assets/img/bg9.jpg);
+        }
+        
+        /*footer*/
+        #paraFooter h2 {
+            font-size: 8vw;
+            line-height: 1.2;
+            padding: 10vw 8vw 0 8vw;
+            margin-bottom: 3vw;
+        }
+        #paraFooter h2 em {
+            display: block;
+            font-family: 'Lato';
+            font-weight: 100;
+            padding-left: 18vw;
+        }
+        #paraFooter .footerInfo {
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            padding: 15px 20px;
+            margin-bottom: 2px;
+        }
+        #paraFooter .footerInfo h3 {
+            padding: 0 10px;
+        }
+        #paraFooter .footerInfo li {
+            display: inline-block;
+        }
+        #paraFooter .footerInfo li a {
+            display: inline-block;
+            border: 1px dashed #fff;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            line-height: 32px;
+        }
+        #paraFooter .footerInfo li:active a,
+        #paraFooter .footerInfo li a:hover {
+            background: #fff;
+            color: #000;
         }
         
     </style>
@@ -245,7 +293,33 @@
     <!-- //Main -->
     
     <footer id="paraFooter">
-        
+        <h2>Parallax <em>Scrolling</em></h2>
+        <div class="footerInfo">
+            <h3>JQuery</h3>
+            <ul>
+                <li><a href="jQuery/parallaxEffect01-jquery.html">1</a></li>
+                <li><a href="jQuery/parallaxEffect02-jquery.html">2</a></li>
+                <li><a href="jQuery/parallaxEffect03-jquery.html">3</a></li>
+                <li><a href="jQuery/parallaxEffect04-jquery.html">4</a></li>
+                <li><a href="jQuery/parallaxEffect05-jquery.html">5</a></li>
+                <li><a href="jQuery/parallaxEffect06-jquery.html">6</a></li>
+                <li><a href="jQuery/parallaxEffect07-jquery.html">7</a></li>
+                <li><a href="jQuery/parallaxEffect08-jquery.html">8</a></li>
+            </ul>
+        </div>
+        <div class="footerInfo">
+            <h3>javascript</h3>
+            <ul>
+                <li><a href="javascript/parallaxEffect01-javascript.html">1</a></li>
+                <li><a href="javascript/parallaxEffect02-javascript.html">2</a></li>
+                <li><a href="javascript/parallaxEffect03-javascript.html">3</a></li>
+                <li><a href="javascript/parallaxEffect04-javascript.html">4</a></li>
+                <li><a href="javascript/parallaxEffect05-javascript.html">5</a></li>
+                <li><a href="javascript/parallaxEffect06-javascript.html">6</a></li>
+                <li><a href="javascript/parallaxEffect07-javascript.html">7</a></li>
+                <li><a href="javascript/parallaxEffect08-javascript.html">8</a></li>
+            </ul>
+        </div>
     </footer>
     <!-- //Footer -->
 </body>
