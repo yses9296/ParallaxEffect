@@ -1,0 +1,330 @@
+ <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax Layout</title>
+    
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap" rel="stylesheet">
+    
+    <!-- style -->
+    <style>
+        /* Font */
+        @font-face {
+            font-family: 'NEXONLv1Gothic';
+            font-weight: 300;
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Light.woff') format('woff');
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'NEXONLv1Gothic';
+            font-weight: 400;
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+            font-style: normal;
+        }
+        
+        /* reset */
+        * {margin: 0; padding: 0;}
+        a {text-decoration: none; color: #fff;}
+        li {list-style: none;}
+        
+        /*layout*/
+        .parallax {
+            background: #222;
+            color: #fff;
+            font-family: 'NEXONLv1Gothic';
+            font-weight: 400;
+        }
+        #paraHeader {
+            padding: 20px;
+        }
+        #paraHeader h1 {
+            display: inline-block;
+            font-size: 20px;
+            border-bottom: 1px dashed #fff;
+            margin-bottom: 8px;
+        }
+        #paraCont {
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+            overflow: hidden;
+        }
+        #paraFooter {
+            padding: 10vw 0;
+        }
+
+        /* Content_Item */
+        .content_item {
+            width: 1000px;
+            max-width: 70vw;
+            margin: 30vw 0;
+            /*background: rgba(255,255,255,0.3);*/
+            text-align: right;
+            position: relative;
+            padding-top: 10vw;
+        }
+        .content_item:nth-child(even){
+            margin-left: auto;
+            text-align: left;
+        }
+        .content_item_num {
+            font-family: 'Lato';
+            font-size: 25vw;
+            opacity: 0.07;
+            position: absolute;
+            right: -5vw; top: -10vw;
+        }
+        .content_item:nth-child(even) .content_item_num {
+            right: auto;
+            left: -5vw;
+        }
+        .content_item_title {
+            padding-bottom: 1vw;
+            font-size: 2vw;
+        }
+        .content_item_imgWrap {
+            width: 100%;
+            padding-bottom: 56%;
+            background: #000;
+            position: relative;
+        }
+        .content_item_img {
+            position: absolute;
+            left: 0; top: 0;
+            width: 100%;
+            height: 100%;
+            
+            background-repeat: no-repeat;
+            background-size: cover;
+            filter: saturate(0%);
+            transition: all 1s;
+        }
+        .content_item_img:hover{
+            filter: saturate(100%);
+        }
+        .content_item_desc {
+            font-size: 4vw;
+            line-height: 1.4;
+            word-break: keep-all;
+            margin-top: -6vw;
+            position: relative;
+            z-index: 100;
+            margin-right: -3vw;
+        }
+        .content_item:nth-child(even) .content_item_desc{
+            margin-right: 0;
+            margin-left: -3vw;
+        }
+        
+        .content_item:nth-child(1) .content_item_img {
+            background-image: url(https://webstoryboy.github.io/wtss/refer-effect/assets/img/bg1.jpg);
+        }
+        .content_item:nth-child(2) .content_item_img {
+            background-image: url(https://webstoryboy.github.io/wtss/refer-effect/assets/img/bg2.jpg);
+        }
+        .content_item:nth-child(3) .content_item_img {
+            background-image: url(https://webstoryboy.github.io/wtss/refer-effect/assets/img/bg3.jpg);
+        }
+        .content_item:nth-child(4) .content_item_img {
+            background-image: url(https://webstoryboy.github.io/wtss/refer-effect/assets/img/bg4.jpg);
+        }
+        .content_item:nth-child(5) .content_item_img {
+            background-image: url(https://webstoryboy.github.io/wtss/refer-effect/assets/img/bg5.jpg);
+        }
+        .content_item:nth-child(6) .content_item_img {
+            background-image: url(https://webstoryboy.github.io/wtss/refer-effect/assets/img/bg6.jpg);
+        }
+        .content_item:nth-child(7) .content_item_img {
+            background-image: url(https://webstoryboy.github.io/wtss/refer-effect/assets/img/bg7.jpg);
+        }
+        .content_item:nth-child(8) .content_item_img {
+            background-image: url(https://webstoryboy.github.io/wtss/refer-effect/assets/img/bg8.jpg);
+        }
+        .content_item:nth-child(9) .content_item_img {
+            background-image: url(https://webstoryboy.github.io/wtss/refer-effect/assets/img/bg9.jpg);
+        }
+        
+        /*footer*/
+        #paraFooter h2 {
+            font-size: 8vw;
+            line-height: 1.2;
+            padding: 10vw 8vw 0 8vw;
+            margin-bottom: 3vw;
+        }
+        #paraFooter h2 em {
+            display: block;
+            font-family: 'Lato';
+            font-weight: 100;
+            padding-left: 18vw;
+        }
+        #paraFooter .footerInfo {
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            padding: 15px 20px;
+            margin-bottom: 2px;
+        }
+        #paraFooter .footerInfo h3 {
+            padding: 0 10px;
+        }
+        #paraFooter .footerInfo li {
+            display: inline-block;
+        }
+        #paraFooter .footerInfo li a {
+            display: inline-block;
+            border: 1px dashed #fff;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            line-height: 32px;
+        }
+        #paraFooter .footerInfo li.active a,
+        #paraFooter .footerInfo li a:hover {
+            background: #fff;
+            color: #000;
+        }
+        
+    </style>
+</head>
+<body class="parallax">
+    <header id="paraHeader">
+        <h1>Parallax Effect - Layout</h1>
+        <p>패럴랙스 스크롤링 효과 - 레이아웃</p>
+    </header>
+    <!-- //Header -->
+    
+    <main id="paraCont">
+        <section id="section01" class="content_item">
+            <span class="content_item_num">01</span>
+            <h2 class="content_item_title">Section 01</h2>
+            <figure class="content_item_imgWrap">
+                <div class="content_item_img"></div>
+            </figure>
+            <p class="content_item_desc">높은 목표를 세우고, 스스로 채찍질 한다.</p>
+        </section>
+        <!-- //section 01 -->
+        
+        <section id="section02" class="content_item">
+            <span class="content_item_num">02</span>
+            <h2 class="content_item_title">Section 02</h2>
+            <figure class="content_item_imgWrap">
+                <div class="content_item_img"></div>
+            </figure>
+            <p class="content_item_desc">결과도 중요하지만, 과정을 더 중요하게 생각한다.</p>
+        </section>
+        <!-- //section 02 -->
+        
+        <section id="section03" class="content_item">
+            <span class="content_item_num">03</span>
+            <h2 class="content_item_title">Section 03</h2>
+            <figure class="content_item_imgWrap">
+                <div class="content_item_img"></div>
+            </figure>
+            <p class="content_item_desc">매 순간에 최선을 다하고, 끊임없이 변화한다.</p>
+        </section>
+        <!-- //section 03 -->
+        
+        <section id="section04" class="content_item">
+            <span class="content_item_num">04</span>
+            <h2 class="content_item_title">Section 04</h2>
+            <figure class="content_item_imgWrap">
+                <div class="content_item_img"></div>
+            </figure>
+            <p class="content_item_desc">모든지 기본을 중요하게 생각한다.</p>
+        </section>
+        <!-- //section 04 -->
+        
+        <section id="section05" class="content_item">
+            <span class="content_item_num">05</span>
+            <h2 class="content_item_title">Section 05</h2>
+            <figure class="content_item_imgWrap">
+                <div class="content_item_img"></div>
+            </figure>
+            <p class="content_item_desc">열정을 잃지 않고 실패에서 실패로 걸어가는 것이 성공이다.</p>
+        </section>
+        <!-- //section 05 -->
+        
+        <section id="section06" class="content_item">
+            <span class="content_item_num">06</span>
+            <h2 class="content_item_title">Section 06</h2>
+            <figure class="content_item_imgWrap">
+                <div class="content_item_img"></div>
+            </figure>
+            <p class="content_item_desc">천 마디 말보단 하나의 행동이 더 값지다.</p>
+        </section>
+        <!-- //section 06 -->
+        
+        <section id="section07" class="content_item">
+            <span class="content_item_num">07</span>
+            <h2 class="content_item_title">Section 07</h2>
+            <figure class="content_item_imgWrap">
+                <div class="content_item_img"></div>
+            </figure>
+            <p class="content_item_desc">조그만 성공에 만족하지 않으며, 방심을 경계한다.</p>
+        </section>
+        <!-- //section 07 -->
+        
+        <section id="section08" class="content_item">
+            <span class="content_item_num">08</span>
+            <h2 class="content_item_title">Section 08</h2>
+            <figure class="content_item_imgWrap">
+                <div class="content_item_img"></div>
+            </figure>
+            <p class="content_item_desc">나는 내가 더 노력할수록 운이 더 좋아진다는 걸 발견했다.</p>
+        </section>
+        <!-- //section 08 -->
+        
+        <section id="section09" class="content_item">
+            <span class="content_item_num">09</span>
+            <h2 class="content_item_title">Section 09</h2>
+            <figure class="content_item_imgWrap">
+                <div class="content_item_img"></div>
+            </figure>
+            <p class="content_item_desc">꿈이 있다면, 그 꿈을 잡고 절대 놓아주지마라.</p>
+        </section>
+        <!-- //section 09 -->
+        
+    </main>
+    <!-- //Main -->
+    
+    <footer id="paraFooter">
+        <h2>Parallax <em>Scrolling</em></h2>
+        <div class="footerInfo">
+            <h3>JQuery</h3>
+            <ul>
+                <li><a href="../jQuery/parallaxEffect01-jquery.html">1</a></li>
+                <li><a href="../jQuery/parallaxEffect02-jquery.html">2</a></li>
+                <li><a href="../jQuery/parallaxEffect03-jquery.html">3</a></li>
+                <li><a href="../jQuery/parallaxEffect04-jquery.html">4</a></li>
+                <li><a href="../jQuery/parallaxEffect05-jquery.html">5</a></li>
+                <li><a href="../jQuery/parallaxEffect06-jquery.html">6</a></li>
+                <li><a href="../jQuery/parallaxEffect07-jquery.html">7</a></li>
+                <li><a href="../jQuery/parallaxEffect08-jquery.html">8</a></li>
+            </ul>
+        </div>
+        <div class="footerInfo">
+            <h3>javascript</h3>
+            <ul>
+                <li><a href="parallaxEffect01-javascript.html">1</a></li>
+                <li class="active"><a href="parallaxEffect02-javascript.html">2</a></li>
+                <li><a href="parallaxEffect03-javascript.html">3</a></li>
+                <li><a href="parallaxEffect04-javascript.html">4</a></li>
+                <li><a href="parallaxEffect05-javascript.html">5</a></li>
+                <li><a href="parallaxEffect06-javascript.html">6</a></li>
+                <li><a href="parallaxEffect07-javascript.html">7</a></li>
+                <li><a href="parallaxEffect08-javascript.html">8</a></li>
+            </ul>
+        </div>
+    </footer>
+    <!-- //Footer -->
+    <!-- script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script></script>
+</body>
+</html>
