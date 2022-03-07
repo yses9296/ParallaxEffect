@@ -447,6 +447,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script>
+        $(".paraNav ul li").click(function(e){
+            e.preventDefault();
+            let target = $(this);
+            let index = target.index();
+            let section = $(".content__item").eq(index);
+            let offset = section.offset().top;
+
+            $("html, body").animate({scrollTop: offset}, 400, "easeInOutCirc");
+        });
         $(window).scroll(function(){
             let scrollTop = $(window).scrollTop()+ $(window).height()/2;
 
