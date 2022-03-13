@@ -378,15 +378,18 @@
     <!-- //footer -->
     <!-- script -->
     <script>
-        //menu
-        document.querySelectorAll(".paraNav ul li a").forEach(el => {
-            el.addEventListener("click", e => {
-                e.preventDefault();
-                document.querySelector(el.getAttribute("href")).scrollIntoView({
-                    behavior: "smooth"
+        function scrollMenu(){
+            //menu
+            document.querySelectorAll(".paraNav ul li a").forEach(el => {
+                el.addEventListener("click", e => {
+                    e.preventDefault();
+                    document.querySelector(el.getAttribute("href")).scrollIntoView({
+                        behavior: "smooth"
+                    });
                 });
             });
-        });
+        }
+        
 
         function scrollProgress (){
             let scrollTop = document.documentElement.scrollTop || window.pageYOffset || window.scrollY;
@@ -397,7 +400,7 @@
                 let offset1 = (scrollTop - el.offsetTop) * 0.1;
                 let offset2 = (scrollTop - el.offsetTop) * 0.2;
 
-                el.querySelector(".content__item__num").style.transform = "rotate("+ offset1 +"deg)";
+                el.querySelector(".content__item__num").style.transform = "translateY("+ offset2 +"px)";
                 el.querySelector(".content__item__title").style.transform = "translateY("+ -offset1 +"px)";
                 el.querySelector(".content__item__desc").style.transform = "translateX("+ offset2 +"px)";
                 el.querySelector(".content__item__img").style.transform = "translateY("+ offset1 +"px)";
@@ -419,6 +422,7 @@
         }
 
         window.addEventListener("scroll", scrollProgress);
+        scrollMenu();
         
     </script>
     <!-- //script -->
