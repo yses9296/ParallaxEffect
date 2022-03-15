@@ -507,12 +507,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script>
         //menu
-        $("paraNav ul li").click(function(e){
+        $(".paraNav ul li").click(function(e){
             e.preventDefault();
             let target = $(this);
             let index = target.index();
 
-            let scrollTop = $(window).scrollTop();
+            let section = $(".content__item").eq(index);
+            let offset = section.offset().top;
+
+            $("html, body").animate({scrollTop: offset}, 400, "easeInOutCirc")
         });
 
         //글씨 쪼개기 (한 개만 선택)
@@ -533,6 +536,14 @@
 
         //나타내기
         $(window).scroll(function(){
+            //Menu Active
+            let scrollTop = $(window).scrollTop();
+            $(".content__item").each(function(i){
+                if(scrollTop >= $(".content__item").eq(i).offset().top -2){
+                    $(".paraNav ul li").eq(i).addClass("active").siblings().removeClass("active");
+                }
+            });
+
             ///하나씩 (비효율)
                 // if ($(window).scrollTop() >= $("#section1").offset().top) {
                 //     $("#section1 .content__item__desc").addClass("show");
