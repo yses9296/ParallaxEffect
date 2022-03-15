@@ -506,16 +506,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script>
-        //menu
+        //Menu
         $(".paraNav ul li").click(function(e){
             e.preventDefault();
             let target = $(this);
             let index = target.index();
-
             let section = $(".content__item").eq(index);
             let offset = section.offset().top;
 
-            $("html, body").animate({scrollTop: offset}, 400, "easeInOutCirc")
+            $("html, body").animate({scrollTop: offset}, 600);
         });
 
         //글씨 쪼개기 (한 개만 선택)
@@ -532,18 +531,8 @@
             $(this).html(split).attr("area-label", text); //span 태그 추가후 재주입
         });
 
-        
-
         //나타내기
         $(window).scroll(function(){
-            //Menu Active
-            let scrollTop = $(window).scrollTop();
-            $(".content__item").each(function(i){
-                if(scrollTop >= $(".content__item").eq(i).offset().top -2){
-                    $(".paraNav ul li").eq(i).addClass("active").siblings().removeClass("active");
-                }
-            });
-
             ///하나씩 (비효율)
                 // if ($(window).scrollTop() >= $("#section1").offset().top) {
                 //     $("#section1 .content__item__desc").addClass("show");
@@ -574,17 +563,31 @@
 
             //한 글자씩 나타내기 (효율)
                 //for
-                for (let i=1; i <= 9; i++){
-                    if ($(window).scrollTop() >= $("#section"+i).offset().top){
-                        $("#section"+i+" .content__item__desc span").each(function(index){
-                            setTimeout(function(){
-                                $("#section"+i+" .content__item__desc span").eq(index).addClass("show");
-                            }, 50 * index );
-                        });
-                    };
-                };
-
+                // for (let i=1; i <= 9; i++){
+                //     if ($(window).scrollTop() >= $("#section"+i).offset().top){
+                //         $("#section"+i+" .content__item__desc span").each(function(index){
+                //             setTimeout(function(){
+                //                 $("#section"+i+" .content__item__desc span").eq(index).addClass("show");
+                //             }, 50 * index );
+                //         });
+                //     };
+                // };
+                let scrollTop = $(window).scrollTop();
                 //each()
+                $(".content__item").each(function(index){
+                    if( scrollTop >= $(this).offset().top - $(window).height()/2 ){
+                        $(this).find(".content__item__desc span").each((index) => {
+                            setTimeout(() => {
+                                $(this).find(".content__item__desc span").eq(index).addClass("show");
+                            }, 50 * index);                            
+                        });
+                        //Menu Active
+                        $(".paraNav ul li").eq(index).addClass("active").siblings().removeClass("active");   
+                    }
+                });
+           //PrintOut
+           $(".paraScroll span").text(parseInt(scrollTop)); 
+
         });
     </script>
 </body>
