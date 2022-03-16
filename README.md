@@ -1,5 +1,4 @@
-# ParallaxEffect
-Parallax Effect Web
+# ParallaxEffect - Parallax Effect Web
 
 ## Parallax Effect 01
 메뉴 이동
